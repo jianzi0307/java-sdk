@@ -415,4 +415,32 @@ public class AipNlp extends BaseClient {
         return requestServer(request);
     }
 
+    /**
+     * 关键词提取接口
+     * 能够从文本中自动抽取若干个反映文本主题、话题、实体等方面的关键词或短语。
+     *
+     * @param text - 必须，原文本内容，最大65535字符（1个汉字=1个字符），建议在文本中同一词语的出现次数少于500次
+     * @param num - 可选，需要提取的关键词数量的最大值，取值为大于等于1的正整数，无num字段时返回全部关键词（提示：num取值较大时，返回的关键词数量可能小于num值）
+     * @param options - 可选参数对象，key: value都为string类型
+     * options - options列表:
+     * @return JSONObject
+     */
+    public JSONObject txtKeywordsExtraction(String text, Integer num, HashMap<String, Object> options) {
+        AipRequest request = new AipRequest();
+        preOperation(request);
+
+        request.addBody("text", text);
+        request.addBody("num", num);
+
+        if (options != null) {
+            request.addBody(options);
+        }
+        request.setUri(NlpConsts.TXT_KEYWORDS_EXTRACTION);
+        request.addHeader(Headers.CONTENT_ENCODING, HttpCharacterEncoding.ENCODE_GBK);
+        request.addHeader(Headers.CONTENT_TYPE, HttpContentType.JSON_DATA);
+        request.setBodyFormat(EBodyFormat.RAW_JSON);
+        postOperation(request);
+        return requestServer(request);
+    }
+
 }

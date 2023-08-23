@@ -43,4 +43,5 @@ public class NlpConsts {
 
     static final String NEWS_SUMMARY = "https://aip.baidubce.com/rpc/2.0/nlp/v1/news_summary";
 
+    static final String TXT_KEYWORDS_EXTRACTION = "https://aip.baidubce.com/rpc/2.0/nlp/v1/txt_keywords_extraction";
 }
